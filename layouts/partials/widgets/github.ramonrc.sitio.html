@@ -1,31 +1,27 @@
-{{ $page := .root }}
-{{ $section := .page }}
+{{ $ := .root }}
+{{ $page := .page }}
 
-  <section class="menu cid-s48OLK6784" once="menu" id="menu1-h">
-    
-        <div class="container">
-            
+<div class="row featurette">
+  {{ with $page.Title }}
+  <div class="col-md-12 section-heading">
+    <h1>{{ . | markdownify | emojify }}</h1>
+    {{ if $page.Params.subtitle }}<p>{{ $page.Params.subtitle | markdownify | emojify }}</p>{{ end }}
+  </div>
+  {{ end }}
 
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-    {{ range $index, $item := $page.Params.item }}
-          <div class="btn-group btn-group-lg" role="group" aria-label="{{ $item.descr }}">
-            <a href="{{ $item.url }}" class="btn btn-{{ $item.tipo }}">{{ .descr }}</a>
-          </div>
-    {{ end }}
-</div>
-        </div>
 
-</section>
-
-<section class="header1 cid-s48MCQYojq mbr-parallax-background" id="header1-f">
-
-    <div class="align-center container">
-        <div class="row">
-            <div class="col-12 col-lg-7">
-                
-                
-               {{$section.Content}}
-            </div>
-        </div>
+  {{ range $page.Params.feature }}
+  <div class="col-12 col-sm-4">
+    <div class="btn-group btn-group-lg" role="group" aria-label="{{ .descr }}">
+        <a href="{{ .url }}" class="btn btn-{{ .tipo }}">{{ .descr }}</a>
     </div>
-</section>
+  </div>
+  {{ end }}
+
+  {{ with $page.Content }}
+  <div class="col-12 col-sm-4">
+    {{ . }}
+  </div>
+  {{ end }}
+
+</div>
