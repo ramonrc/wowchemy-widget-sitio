@@ -1,16 +1,15 @@
 {{ $page := .root }}
 {{ $section := .page }}
 
-<h2>{{$section.Title}}</h2>
   <section class="menu cid-s48OLK6784" once="menu" id="menu1-h">
     
         <div class="container">
             
 
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-    {{ range $page.Params.info }}
-          <div class="btn-group btn-group-lg" role="group" aria-label="{{ .descr }}">
-            <a href="{{ .url }}" class="btn btn-{{ .tipo }}">{{ .descr }}</a>
+    {{ range $index, $item := $page.Params.info }}
+          <div class="btn-group btn-group-lg" role="group" aria-label="{{ $item.descr }}">
+            <a href="{{ $item.url }}" class="btn btn-{{ $item.tipo }}">{{ .descr }}</a>
           </div>
     {{ end }}
 </div>
@@ -19,10 +18,6 @@
 </section>
 
 <section class="header1 cid-s48MCQYojq mbr-parallax-background" id="header1-f">
-
-    
-
-    
 
     <div class="align-center container">
         <div class="row">
