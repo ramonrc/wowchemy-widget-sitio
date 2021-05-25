@@ -8,20 +8,24 @@
     {{ if $page.Params.subtitle }}<p>{{ $page.Params.subtitle | markdownify | emojify }}</p>{{ end }}
   </div>
   {{ end }}
-
-
-  {{ range $page.Params.feature }}
-  <div class="col-12 col-sm-4">
-    <div class="btn-group btn-group-lg" role="group" aria-label="{{ .descr }}">
-        <a href="{{ .url }}" class="btn btn-{{ .tipo }}">{{ .descr }}</a>
-    </div>
-  </div>
-  {{ end }}
-
+  
   {{ with $page.Content }}
-  <div class="col-12 col-sm-4">
+  <div class="col-md-12">
     {{ . }}
   </div>
   {{ end }}
 
+  {{ range $page.Params.feature }}
+  <div class="col-12 col-sm-3">
+    {{ if .img }}
+    <a href="{{ .url }}" class="btn btn-default">
+     <img src="{{ .img }}" width="100" />{{ .descr }}
+    </a>
+    {{ else }}
+    <div class="btn-group btn-group-lg" role="group" aria-label="{{ .descr }}">
+        <a href="{{ .url }}" class="btn btn-{{ .tipo }}">{{ .descr }}</a>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
 </div>
